@@ -1,0 +1,8 @@
+{
+  "assets": {
+    "directory": "dist/client"
+  },
+  "function": {
+    "path": "dist/server/server.js"
+  }
+}
