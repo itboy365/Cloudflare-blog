@@ -1,13 +1,5 @@
-import { handleQueueBatch } from "@/lib/queue/queue.handler";
-
-export { CommentModerationWorkflow } from "@/features/comments/workflows/comment-moderation";
-export { ExportWorkflow } from "@/features/import-export/workflows/export.workflow";
-export { ImportWorkflow } from "@/features/import-export/workflows/import.workflow";
-export { PostAutoSnapshotWorkflow } from "@/features/posts/workflows/post-auto-snapshot";
-export { PostProcessWorkflow } from "@/features/posts/workflows/post-process";
-export { ScheduledPublishWorkflow } from "@/features/posts/workflows/scheduled-publish";
-export { PasswordHasher } from "@/lib/do/password-hasher";
-export { RateLimiter } from "@/lib/do/rate-limiter";
+// ESA 环境适配：移除所有 Cloudflare Workflows、Queues、Durable Objects 的导出
+// 仅保留 fetch 入口用于处理 HTTP 请求
 
 declare module "@tanstack/react-start" {
   interface Register {
@@ -25,7 +17,5 @@ export default {
     const { handleRootRequest } = await import("@/lib/worker/root-handler");
     return handleRootRequest(request, env, ctx);
   },
-  async queue(batch, env, ctx) {
-    await handleQueueBatch(batch, env, ctx);
-  },
+  // queue 处理已移除，ESA 不提供队列服务
 } satisfies ExportedHandler<Env>;
