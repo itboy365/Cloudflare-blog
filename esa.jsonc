@@ -2,12 +2,7 @@
   "assets": {
     "directory": "dist/client"
   },
-  "function": {
-    // 指定 SSR 函数入口文件
-    "entry": "dist/server/server.js"
-  },
-  // 构建时可用的环境变量（注意：这些是构建时变量，会注入到 Vite/Node 进程中）
-  "environments": {
-    "THEME": "default"
+  "commands": {
+    "build": "npm install && npm run build && mkdir -p functions && cp dist/server/server.js functions/server.js"
   }
 }
