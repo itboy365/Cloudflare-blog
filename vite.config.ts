@@ -1,5 +1,5 @@
 import path from "node:path";
-import { cloudflare } from "@cloudflare/vite-plugin";
+// import { cloudflare } from "@cloudflare/vite-plugin"; // ESA 环境下不需要
 import { paraglideVitePlugin } from "@inlang/paraglide-js";
 import tailwindcss from "@tailwindcss/vite";
 import { devtools } from "@tanstack/devtools-vite";
@@ -41,11 +41,7 @@ const config = defineConfig(({ mode }) => {
         strategy: ["cookie", "preferredLanguage", "baseLocale"],
         cookieName: "LOCALE",
       }),
-      cloudflare({
-        viteEnvironment: {
-          name: "ssr",
-        },
-      }),
+      // cloudflare 插件已禁用，ESA 环境不需要
       viteTsConfigPaths({
         projects: ["./tsconfig.json"],
       }),
@@ -58,6 +54,11 @@ const config = defineConfig(({ mode }) => {
       }),
       viteReact(),
     ],
+    build: {
+      rollupOptions: {
+        external: ['cloudflare:workers']
+      }
+    }
   };
 });
 
