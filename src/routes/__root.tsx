@@ -123,6 +123,22 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     >
       <head>
         <HeadContent />
+        {/* 解决 Cloudflare 禁用 referrer 的问题 */}
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+        {/* 百度统计 */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              var _hmt = _hmt || [];
+              (function() {
+                var hm = document.createElement("script");
+                hm.src = "https://hm.baidu.com/hm.js?e91606557ac83395f963cbc4e8a398ad";
+                var s = document.getElementsByTagName("script")[0]; 
+                s.parentNode.insertBefore(hm, s);
+              })();
+            `,
+          }}
+        />
       </head>
       <body>
         <ThemeProvider>{children}</ThemeProvider>
