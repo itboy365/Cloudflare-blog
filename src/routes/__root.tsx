@@ -123,6 +123,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     >
       <head>
         <HeadContent />
+        {/* 百度站长平台验证 */}
+        <meta name="baidu-site-verification" content="codeva-Eq9IDPT82h" />
         {/* 解决 Cloudflare 禁用 referrer 的问题 */}
         <meta name="referrer" content="strict-origin-when-cross-origin" />
         {/* 百度统计 */}
