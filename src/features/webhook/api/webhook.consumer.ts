@@ -132,8 +132,20 @@ export async function sendWebhookRequest(
 ): Promise<void> {
   const locale = serverEnv(context.env).LOCALE;
   const body = createWebhookBody(messageId, data.event, options, locale);
-  const payload = JSON.stringify(body);
+  let payload = JSON.stringify(body);
   const timestamp = body.timestamp;
+
+  // ==================== 飞书适配（新增） ====================
+  if (data.url.includes("open.feishu.cn")) {
+    const text = body.subject ? `${body.subject}\n${body.message}` : body.message;
+    const feishuPayload = {
+      msg_type: "text",
+      content: { text },
+    };
+    payload = JSON.stringify(feishuPayload);
+  }
+  // ========================================================
+
   const signature = await signPayload(data.secret, payload, timestamp);
 
   const response = await fetch(data.url, {
