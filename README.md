@@ -81,8 +81,8 @@ Flare Stack Blog 是一个深度拥抱 Cloudflare 生态的开源独立博客系
 ```bash
 # 克隆仓库并安装依赖
 git clone https://github.com/du2333/flare-stack-blog.git
-cd flare-stack-blog
-bun install
+
+
 
 # 复制本地配置文件模板
 cp .env.example .env
@@ -129,3 +129,4 @@ bun dev
 ## 开源协议
 
 本项目采用 [GPL-3.0](https://github.com/du2333/flare-stack-blog/blob/main/LICENSE) 协议开源。
+
